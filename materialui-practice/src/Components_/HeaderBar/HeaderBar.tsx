@@ -56,9 +56,7 @@ const Search = styled('div')(({ theme }) => ({
     }));
 
 //THIS.TYPE
-type HeaderBarProps = {
-      //openHamburgerMenu: (isOpen:boolean) => void
-};
+type HeaderBarProps = {};
 //THIS.COMPONENT
 export const HeaderBar: FunctionComponent<HeaderBarProps> = ({}) => {
       const [isHamburgerOpen, setIsHamburgerOpen] = useState<boolean>(false)
@@ -81,7 +79,7 @@ export const HeaderBar: FunctionComponent<HeaderBarProps> = ({}) => {
 							color="inherit"
 							aria-label="open drawer"
 							sx={{ mr: 2 }}
-                                          onClick={() => openCloseHamburgerMenu(true)}
+              onClick={() => openCloseHamburgerMenu(true)}
 						>
 							<MenuIcon />
 						</IconButton>
@@ -100,7 +98,7 @@ export const HeaderBar: FunctionComponent<HeaderBarProps> = ({}) => {
 							<StyledInputBase
 								placeholder="Search…"
 								inputProps={{ "aria-label": "search menu in header" }}
-                                                onChange={(e) => tester(e.target.value)}
+                onChange={(e) => tester(e.target.value)}
 							/>
 						</Search>
 					</Toolbar>
