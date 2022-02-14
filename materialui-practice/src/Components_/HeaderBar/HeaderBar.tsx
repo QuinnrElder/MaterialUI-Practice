@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent } from "react";
+import React, { Fragment, FunctionComponent, useState } from "react";
 
 //MATERIAL-UI
 import { styled, alpha } from "@mui/material/styles";
@@ -10,8 +10,9 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { MenuDrawer } from "../MenuDrawer/MenuDrawer";
 
-//STYLES
+//STYLES~Material-UI
 const Search = styled('div')(({ theme }) => ({
       position: 'relative',
       borderRadius: theme.shape.borderRadius,
@@ -54,9 +55,21 @@ const Search = styled('div')(({ theme }) => ({
       },
     }));
 
-type HeaderBarProps = {};
-
+//THIS.TYPE
+type HeaderBarProps = {
+      //openHamburgerMenu: (isOpen:boolean) => void
+};
+//THIS.COMPONENT
 export const HeaderBar: FunctionComponent<HeaderBarProps> = ({}) => {
+      const [isHamburgerOpen, setIsHamburgerOpen] = useState<boolean>(false)
+      const openCloseHamburgerMenu = (isOpenAction:boolean) => {
+        setIsHamburgerOpen(isOpenAction)
+      }
+
+      const tester = (value:string) => {
+            console.log(value)
+      }
+
 	return (
 		<Fragment>
 			<Box sx={{ flexGrow: 1 }}>
@@ -68,6 +81,7 @@ export const HeaderBar: FunctionComponent<HeaderBarProps> = ({}) => {
 							color="inherit"
 							aria-label="open drawer"
 							sx={{ mr: 2 }}
+                                          onClick={() => openCloseHamburgerMenu(true)}
 						>
 							<MenuIcon />
 						</IconButton>
@@ -77,7 +91,7 @@ export const HeaderBar: FunctionComponent<HeaderBarProps> = ({}) => {
 							component="div"
 							sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
 						>
-							MUI
+							Menu
 						</Typography>
 						<Search>
 							<SearchIconWrapper>
@@ -85,12 +99,14 @@ export const HeaderBar: FunctionComponent<HeaderBarProps> = ({}) => {
 							</SearchIconWrapper>
 							<StyledInputBase
 								placeholder="Search…"
-								inputProps={{ "aria-label": "search" }}
+								inputProps={{ "aria-label": "search menu in header" }}
+                                                onChange={(e) => tester(e.target.value)}
 							/>
 						</Search>
 					</Toolbar>
 				</AppBar>
 			</Box>
+                  <MenuDrawer isDrawerOpen={isHamburgerOpen} openCloseHamburgerMenu={openCloseHamburgerMenu}/>
 		</Fragment>
 	);
 };
