@@ -23,14 +23,13 @@ export const MenuDrawer: FunctionComponent<MenuDrawerProps> = ({
 	isDrawerOpen,
 	openCloseHamburgerMenu,
 }) => {
-	const toggleDrawer = (open: boolean) => {};
 
 	const list = () => (
 		<Box
 			sx={{ width: 250 }}
 			role="presentation"
-			onClick={() => toggleDrawer(false)}
-			onKeyDown={() => toggleDrawer(false)}
+			onClick={() => openCloseHamburgerMenu(false)}
+			onKeyDown={() => openCloseHamburgerMenu(false)}
 		>
 			<IconButton
 				size="large"
@@ -71,7 +70,7 @@ export const MenuDrawer: FunctionComponent<MenuDrawerProps> = ({
 			<Drawer
 				anchor={"left"}
 				open={isDrawerOpen}
-				onClose={() => toggleDrawer(false)}
+				onClose={() => openCloseHamburgerMenu(false)}
 			>
 				{list()}
 			</Drawer>
